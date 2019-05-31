@@ -11,16 +11,20 @@ object S3Utility {
   def getS3ObjectByURI(s3Client: S3, s3BucketURL: String, targetLocation: String) = {
 
     val s3URI: AmazonS3URI = new AmazonS3URI(s3BucketURL)
-    println("s3URI : "+ s3URI)
-    val s3BucketName = s3URI.getBucket
-    println("s3BucketName : "+ s3BucketName)
-    val s3Key = s3URI.getKey
-    println("s3Key : "+ s3Key)
+    println("s3URI : " + s3URI)
 
-    val getObjectRequest = new GetObjectRequest("test-js-knoldus", "Product-Development-Organization-Guidelines-GoogleDocs.pdf")
-    println("getObjectRequest : "+ getObjectRequest)
-    val file = new File("/home/knoldus/Desktop/xx/Product-Development-Organization-Guidelines-GoogleDocs")
-    println("file : "+ file)
+    val s3BucketName: String = s3URI.getBucket
+    println("s3BucketName : " + s3BucketName)
+
+    val s3Key = s3URI.getKey
+    println("s3Key : " + s3Key)
+
+    val getObjectRequest = new GetObjectRequest(s3BucketName, s3Key)
+    println("getObjectRequest : " + getObjectRequest)
+
+    val file = new File(targetLocation)
+    println("file : " + file)
+
     println(s3Client.getObject(getObjectRequest, file))
   }
 }

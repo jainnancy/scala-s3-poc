@@ -4,7 +4,7 @@
 		module="scala-s3-poc_2.12"
 		revision="0.1"
 		status="integration"
-		publication="20190531112322"
+		publication="20190531120206"
 	>
 		<description>
 		scala-s3-poc
