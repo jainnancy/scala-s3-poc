@@ -1,17 +1,15 @@
 package edu.knoldus.main
 
-import awscala.Region0
-import awscala.s3.S3
+import com.amazonaws.auth.BasicAWSCredentials
+import com.amazonaws.services.s3.AmazonS3Client
 import edu.knoldus.ApplicationConfig._
 import edu.knoldus.utils.S3Utility._
 
 object Main extends App {
 
-  implicit val region = Region0.US_EAST_1
+  val awsCredentials = new BasicAWSCredentials(access_key_ID, secret_access_key)
 
-  private val s3Client: S3 = S3.apply(access_key_ID, secret_access_key)
+  val amazonS3Client: AmazonS3Client = new AmazonS3Client(awsCredentials)
 
-//  getS3ObjectByURI(s3Client, s3_bucket_uri, target_location)
-
-  getS3ObjectBySignedURI(s3Client, s3_bucket_uri, target_location)
+  getS3ObjectBySignedURI(amazonS3Client, s3_bucket_uri, target_location)
 }
